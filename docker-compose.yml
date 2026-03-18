@@ -127,6 +127,23 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls.certresolver=le
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=https-redirect
 
+services:
+  backend:
+    build: .
+    environment:
+      - DATABASE_URL=postgresql://user:${DB_PASSWORD}@db:5432/myapp
+    expose:
+      - "8000"
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "5000:80"
+    depends_on:
+      - backend
+
 networks:
   traefik-public:
     external: true
