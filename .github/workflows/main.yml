@@ -19,7 +19,10 @@ jobs:
 
       - name: Build and Push Backend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:latest ./backend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:${{ github.run_id }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:${{ github.run_id }}
+
+          docker tag ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:${{ github.run_id }} ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:latest
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/yasmine-backend:latest
 
       - name: Build and Push Frontend
