@@ -26,8 +26,8 @@ jobs:
 
       - name: Build and Push Backend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ github.sha }} .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ github.sha }}
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}~/full-stack-fastapi-template/backend/Dockerfile:${{ github.sha }} .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}~/full-stack-fastapi-template/backend/Dockerfile:${{ github.sha }}
 
   deploy:
     needs: test-and-build
