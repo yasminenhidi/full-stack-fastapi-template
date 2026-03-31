@@ -127,7 +127,7 @@ services:
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-https.tls.certresolver=le
       - traefik.http.routers.${STACK_NAME?Variable not set}-frontend-http.middlewares=https-redirect
 
-services:
+
   backend:
     build: .
     environment:
